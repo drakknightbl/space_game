@@ -56,6 +56,7 @@ public class Main extends Activity {
 	
 	//Items
 	private Handler mHandler = new Handler();
+	private Button endcall;
 	private Button sound_optn;
 	private ImageButton button0;
 	private ImageButton button1;
@@ -661,7 +662,7 @@ public class Main extends Activity {
 			}
 			// Make Call
 			if(isSender){
-				//this.callPlayer(player2);
+				this.callPlayer(player2);
 			}
             
 			
@@ -711,6 +712,8 @@ public class Main extends Activity {
             Toast.makeText(Main.this, "Credential not configured properly", Toast.LENGTH_SHORT);
         }
     }
+    
+    
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -762,8 +765,8 @@ public class Main extends Activity {
         player2 = (Player) inGamePlayers[1];
         String player2Name = i.getStringExtra("second_player");
         player2.setName(player2Name);
-        //String player2Number = i.getStringExtra("second_number");
-        //player2.setNumber(player2Number);
+        String player2Number = i.getStringExtra("second_number");
+        player2.setNumber(player2Number);
         player2.setScoreBoard((TextView) findViewById(R.id.score_text2));
         //p2Score.setText(Player2.getName() + ": " + Player2.getScore());
 
@@ -780,6 +783,7 @@ public class Main extends Activity {
         image_0 = (ImageView) findViewById(R.id.image0);
         image_1 = (ImageView) findViewById(R.id.image1);
         image_2 = (ImageView) findViewById(R.id.image2);
+        endcall = (Button) findViewById(R.id.endcall);
         sound_optn = (Button) findViewById (R.id.sound_optn);
         button0 = (ImageButton) findViewById(R.id.button0);
         button1 = (ImageButton) findViewById(R.id.button1);
@@ -813,6 +817,16 @@ public class Main extends Activity {
         playAgainBtn.setOnClickListener(new myPlayAgainClickListener(this));
         tryAgainBtn.setOnClickListener(new myPlayAgainClickListener(this));
 	   
+        //EndCall Options
+        endcall.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Log.i("Main", "EndCall");
+			}
+		});
+        
         //Sound Options
         
         sound_optn.setOnClickListener(new View.OnClickListener() {
@@ -890,7 +904,7 @@ public class Main extends Activity {
     public void onPause() {
     	Log.i("Main", "onPause");
     	this.multiPlayerSupport.onFinish();
-    	this.finish();
+    	//this.finish();
     	super.onPause();
     }
     
