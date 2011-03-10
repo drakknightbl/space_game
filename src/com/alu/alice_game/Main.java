@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Properties;
 
+
 import com.alu.alice_game.server.MultiPlayerAwsSupportImpl;
 import com.alu.alice_game.server.MultiPlayerStubSupportImpl;
 import com.alu.alice_game.server.MultiPlayerServerSupportImpl;
@@ -16,6 +17,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -23,6 +25,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -53,6 +57,8 @@ public class Main extends Activity {
 
 	//Used to tell when both players have swapped once
 	private boolean swapped = false;
+	
+	public static final int EXIT_MENU = 1;
 	
 	//Items
 	private Handler mHandler = new Handler();
@@ -634,6 +640,13 @@ public class Main extends Activity {
         sendBroadcast(callIntent);
 	}
 	
+	private void endCurrentCall(){
+		Intent endIntent = new Intent();
+		endIntent.setAction("com.android.phone.InCallScreen.THIRD_PARTY_VIDEO_CALL_TERM");
+		sendBroadcast(endIntent);
+		Log.i("Main", "endCurrentCall()");
+	}
+	
 	
 	private void startRound(){
 		if(numOfRounds == 0){
@@ -659,12 +672,7 @@ public class Main extends Activity {
 					lose.show();
 					Log.i("Main", player1.getName() + " lost to " + player2.getName());
 				}
-			}
-			// Make Call
-			if(isSender){
-				this.callPlayer(player2);
-			}
-            
+			}            
 			
 		}else{
                         image_array.add( new Integer(R.id.image0));
@@ -714,7 +722,33 @@ public class Main extends Activity {
     }
     
     
+   private void exitApp(){
+	   this.multiPlayerSupport.onFinish();
+	   this.finish();
+   }
 	
+	//Creates Menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		
+		menu.add(0, EXIT_MENU, 0, R.string.menu_exit);
+		
+		return true;
+		
+	}
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		switch(item.getItemId()){
+		case EXIT_MENU:
+			exitApp();
+			break;
+		default:
+			Log.i("Main", "onOptionsItemSelected error");
+		}
+		return true;
+		
+	}
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -822,7 +856,7 @@ public class Main extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
+				endCurrentCall();
 				Log.i("Main", "EndCall");
 			}
 		});
@@ -866,51 +900,22 @@ public class Main extends Activity {
         //startGetCredentials();
 
     }// onCreate
-   
-    private void startGetCredentials() {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Properties properties = new Properties();
-                    properties.load(getClass().getResourceAsStream("AwsCredentials.properties"));
-
-                    String accessKeyId = properties.getProperty("accessKey");
-                    String secretKey = properties.getProperty("secretKey");
-
-                    if ( ( accessKeyId == null ) || (accessKeyId.equals("") ) || ( accessKeyId.equals("CHANGEME")) || ( secretKey == null) || ( secretKey.equals("") ) || (secretKey.equals("CHANGEME") ) ) {
-                        Log.e("Main", "Aws credentials not configured correctly.");
-                        credentials_found = false;
-                    } else {
-                        credentials = new BasicAWSCredentials(properties.getProperty("accessKey" ), properties.getProperty("secretKey") );
-                        credentials_found = true;
-                    }
-
-                } catch (Exception exception) {
-                    Log.e("Main", "Loading AWS Credentials : " + exception.getMessage());
-                    credentials_found = false;
-                }
-
-                Main.this.mHandler.post(postResults);
-            }
-
-
-        };
-        t.start();
-
-    } 
+    
     
     
     public void onPause() {
     	Log.i("Main", "onPause");
-    	this.multiPlayerSupport.onFinish();
+    	//this.multiPlayerSupport.onFinish();
     	//this.finish();
     	super.onPause();
     }
     
+
+    
     public void onStop(){
     	//Stops background music if it is playing.
     	try{
+    		this.endCurrentCall();
 	    	if(background_music.isPlaying()){
 	    		background_music.stop();
 	    	}//if
