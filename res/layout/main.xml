@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:layout_marginTop="10mm">
+  android:layout_marginTop="20dp">
 
 <ImageView	android:id="@+id/image0"
 			android:src="@drawable/cartoon0"
@@ -75,37 +75,40 @@
 				android:layout_width="fill_parent" 
 				android:gravity="bottom"
 				android:layout_below="@+id/screen_dialer_linearLayout_top" 
-				android:layout_margin="10px">
+				android:layout_margin="10dp">
 				
+	<LinearLayout android:layout_height="wrap_content"
+				  android:layout_width="fill_parent"
+				  android:gravity="center_horizontal">
 
 
 
-
-<ImageButton android:layout_height="wrap_content" 
-			 android:layout_width="wrap_content" 
-			 android:id="@+id/button0" 
-			 android:src="@drawable/cartoon0">
-			 
-			 </ImageButton>
-<ImageButton android:layout_toRightOf="@+id/button0" 
-			 android:layout_height="wrap_content" 
-			 android:layout_width="wrap_content" 
-			 android:id="@+id/button1" 
-			 android:src="@drawable/cartoon1">
-</ImageButton>
-<ImageButton android:layout_width="wrap_content" 
-			 android:layout_height="wrap_content" 
-			 android:layout_toRightOf="@+id/button1" 
-			 android:id="@+id/button2" 
-			 android:src="@drawable/cartoon2">
-</ImageButton>
-<!-- 
- <ImageButton android:layout_height="wrap_content" 
-			 android:layout_width="wrap_content" 
-			 android:id="@+id/button3" 
-			 android:src="@drawable/cartoon3" 
-			 android:layout_toRightOf="@+id/button2"></ImageButton>
- -->
+		<ImageButton android:layout_height="wrap_content" 
+					 android:layout_width="wrap_content" 
+					 android:id="@+id/button0" 
+					 android:src="@drawable/cartoon0">
+					 
+					 </ImageButton>
+		<ImageButton android:layout_toRightOf="@+id/button0" 
+					 android:layout_height="wrap_content" 
+					 android:layout_width="wrap_content" 
+					 android:id="@+id/button1" 
+					 android:src="@drawable/cartoon1">
+		</ImageButton>
+		<ImageButton android:layout_width="wrap_content" 
+					 android:layout_height="wrap_content" 
+					 android:layout_toRightOf="@+id/button1" 
+					 android:id="@+id/button2" 
+					 android:src="@drawable/cartoon2">
+		</ImageButton>
+		<!-- 
+		 <ImageButton android:layout_height="wrap_content" 
+					 android:layout_width="wrap_content" 
+					 android:id="@+id/button3" 
+					 android:src="@drawable/cartoon3" 
+					 android:layout_toRightOf="@+id/button2"></ImageButton>
+		 -->
+	</LinearLayout>
 
 </RelativeLayout>
 
