@@ -61,13 +61,16 @@
 		  android:layout_below="@+id/score_text1"></TextView>
 
 
-
-<ImageView	android:id="@+id/bottom_grass"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/grass200"
-			android:layout_alignParentBottom="true"/>
-			
+<LinearLayout android:layout_width="fill_parent"
+			  android:layout_height="wrap_content"
+			  android:gravity="center_horizontal"
+			  android:layout_alignParentBottom="true">
+	<ImageView	android:id="@+id/bottom_grass"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/grass200"
+				android:layout_alignParentBottom="true"/>
+</LinearLayout>
 
 <RelativeLayout android:layout_height="wrap_content" 
 				android:id="@+id/screen_dialer_relativeLayout_bottom" 

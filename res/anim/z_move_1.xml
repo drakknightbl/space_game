@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android" >
+    <translate  android:fromXDelta="50%p" 
+    		 	android:toXDelta="0" 
+    		 	android:fromYDelta="85%p"
+    		 	android:toYDelta="50%p"
+    		 	android:duration="1000" /> 	
+    		 	
+
+    <translate  android:startOffset="1000"
+    			android:fromXDelta="0%p" 
+    		 	android:toXDelta="100%p" 
+    		 	android:fromYDelta="0"
+    		 	android:toYDelta="-15%p"
+    		 	android:duration="1000" />
+     		 	
+    <translate  android:startOffset="2000"
+    			android:fromXDelta="0"
+    		 	android:toXDelta="-100%p" 
+    		 	android:fromYDelta="0"
+    		 	android:toYDelta="-10%p"
+    		 	android:duration="1000" />
     
+    <translate  android:startOffset="3000"
+    			android:fromXDelta="0"
+    		 	android:toXDelta="100%p" 
+    		 	android:fromYDelta="0"
+    		 	android:toYDelta="-20%p"
+    		 	android:duration="1000" />
+    		 	
+<!--    		 	
 	<translate  android:fromXDelta="128" 
     		 	android:toXDelta="0" 
     		 	android:fromYDelta="240"
