@@ -20,6 +20,11 @@
             </intent-filter>
 
      	</activity>
+     	<receiver android:name="com.alu.alice_game.GameReceiver">
+     		<intent-filter>
+     			<action android:name="com.alu.game.Main.CALL_STARTED"/>
+     		</intent-filter>
+     	</receiver>
 
     </application>
 	<supports-screens android:largeScreens="true" android:anyDensity="true" android:normalScreens="true"></supports-screens>
