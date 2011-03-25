@@ -1,3 +1,3 @@
-Alice_game
-this is a Game for MWC conference.
-
+Space Game
+With Video Call Function to ALUM
+Requires Launcher
